@@ -1,21 +1,19 @@
-# goodreads
+# Najbolj popularne knjige
 
-*Najbolj popularne knjige*
-
-Analazirial bom prvih tisoč knjig iz seznama 'Best books ever' na strani
+Analazirial bom prvih tisoč knjig iz seznama 'Best books ever' na spletni strani
 https://www.goodreads.com/list/show/1.Best_Books_Ever?page=1
 
 V analizi bom zajel:
 - ime knjige in avtorja
-- ocena in število ocen (glede na seznam 'Best books ever' in na splošno)
+- oceno in število ocen (glede na seznam 'Best books ever' in na splošno)
+- število komentarjev
 - leto izdaje
 - število strani knjige
-- Je individualna ali del serije
+- je individualna ali del serije
 - žanr 
-- opis
 
-Vprasanja:
-- Ali stevilo strani vpliva na popularnost knjige?
-- Ali so knjige, ki so del serij, bolj popularne kot individualne knjige?
-- Kaksna je korelacija med letom izdaje in oceno?
-- Kateri zanr ima najbolse ocene? Kateri najslabse?
+Zanimala me bodo naslednja vprašanja:
+- Ali število strani vpliva na popularnost knjige?
+- Kakšna je korelacija med letom izdaje in oceno?
+- Ali so knjige, ki so del serije, bolj popularne od individualnih knjig?
+- Kateri žanr ima najbolse ocene? Kateri najslabše?

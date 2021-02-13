@@ -11,12 +11,14 @@ PAGE_DIRECTORY = 'zajeti_podatki'
 BOOK_DIRECTORY = 'zbrane_knjige'
 MAIN_DIRECTORY = 'zbrani_podatki'
 
+
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36 Edg/86.0.622.63'}
+
 
 sort_elements_pattern = re.compile(
     r'<tr(.*?)&emsp;',
-    flags=re.DOTALL)
-
+    flags=re.DOTALL
+)
 
 main_pattern = re.compile(
     r'class="number">(?P<list_placement>\d+)</td>.*?'
@@ -63,6 +65,11 @@ genre_pattern = re.compile(
     r'<a class="actionLinkLite bookPageGenreLink" href="/genres/.+?>(?P<genre>.+?)</a>'
 )
 
+review_pattern = re.compile(
+    r'<meta itemprop="reviewCount" content="\d+" />\n    (?P<reviews>.+?)\s',
+    flags=re.DOTALL
+)
+
 
 def get_date(string):
     year_list = re.findall(get_date_pattern, string)
@@ -82,7 +89,6 @@ def url_to_string(url):
         return None
     return page_content.text
     
-
 
 def save_string_to_file(text, filename, directory):
     os.makedirs(directory, exist_ok=True)
@@ -146,7 +152,10 @@ def sort_data_from_book(book):
         result['series'] = True
     else:
         result['series'] = False
-        
+    
+    reviews = review_pattern.search(book)
+    result['reviews'] = int(reviews['reviews'].replace(',', ''))
+
     return result
 
 
@@ -224,18 +233,12 @@ def main(redownload=True, reparse=True):
         all_data.append(dic1)
 
     list_of_dict_to_csv(all_data,
-        ['id', 'title', 'list_placement', 'author_id', 'author', 'pages', 'date', 'series', 'avg_rating', 'ratings', 'list_score', 'list_votes'],
+        ['id', 'title', 'list_placement', 'author_id', 'author', 'pages', 'date', 'series', 'avg_rating', 'ratings', 'reviews', 'list_score', 'list_votes'],
         'podatki.csv',
         MAIN_DIRECTORY)
 
 
-
-
-
-
-
-
-'''---Napisal kodo, ki mi je ponovno poskusila shraniti datoteke, ki se niso pravilno nalozile(le-te so imele najmanjso velikost)---'''   
+'''---Napisal kodo, ki mi je ponovno poskusila shraniti datoteke, ki se niso pravilno nalozile (le-te so imele najmanjso velikost)---'''   
     
     #book_directory = 'BOOK_DIRECTORY'
     #n = 2               #izbere prvih n najmanjsih datotek
@@ -252,9 +255,5 @@ def main(redownload=True, reparse=True):
 '''-----------------------------------------------------------------------------------------------------------------------------'''
 
     
-    
-
-    
-
 if __name__ == '__main__':
     main()
