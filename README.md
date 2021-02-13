@@ -1,6 +1,6 @@
 # Najbolj popularne knjige
 
-Analazirial bom prvih tisoč knjig iz seznama 'Best books ever' na spletni strani
+Analiziral bom prvih tisoč knjig iz seznama 'Best books ever' na spletni strani
 https://www.goodreads.com/list/show/1.Best_Books_Ever?page=1
 
 V analizi bom zajel:
